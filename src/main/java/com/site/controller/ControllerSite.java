@@ -16,8 +16,8 @@ public class ControllerSite {
 
 
     @PostMapping(value = "/index")
-    public String greetingSubmit(@RequestParam String content, Model model) {
-        model.addAttribute("aaa", model);
+    public String greetingSubmit( Model model) {
+        model.addAttribute("user", model);
         return "result";
     }
 
