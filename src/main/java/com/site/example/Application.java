@@ -1,4 +1,4 @@
-package com.site;
+package com.site.example;
 
 
 import org.springframework.boot.SpringApplication;
