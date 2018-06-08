@@ -11,7 +11,8 @@ public class UserRepositoryImpl implements UserRepository {
     private static final String password = "12345";
     private static final String insertNew = "INSERT INTO people VALUES(?,?,?)";
 
-    public void saveUserInDataBase(int numberColumn, String nameColumn) {
+    @Override
+    public void saveUserInDataBase(String userName, String password) {
         Connection connection = null;
         PreparedStatement preparedStatement = null;
         Driver driver = null;
@@ -23,9 +24,6 @@ public class UserRepositoryImpl implements UserRepository {
             preparedStatement = connection.prepareStatement(insertNew);
             preparedStatement.setString(2, "Alexandr");
             preparedStatement.setString(3, "11111");
-
-            preparedStatement.setString(2, "Andrei");
-            preparedStatement.setString(3, "12345");
             preparedStatement.execute();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -38,7 +36,7 @@ public class UserRepositoryImpl implements UserRepository {
             }
 
         }
-
-
     }
-}
+    }
+
+
