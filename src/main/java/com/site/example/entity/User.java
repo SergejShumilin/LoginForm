@@ -3,12 +3,22 @@ package com.site.example.entity;
 import java.util.Objects;
 
 public class User {
-    String name;
-    String password;
+    private long id;
+    private String name;
+    private String password;
 
-    public User(String name, String password) {
+    public User(long id, String name, String password) {
+        this.id = id;
         this.name = name;
         this.password = password;
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
     }
 
     public String getName() {
@@ -31,21 +41,23 @@ public class User {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        User entity = (User) o;
-        return Objects.equals(name, entity.name) &&
-                Objects.equals(password, entity.password);
+        User user = (User) o;
+        return id == user.id &&
+                Objects.equals(name, user.name) &&
+                Objects.equals(password, user.password);
     }
 
     @Override
     public int hashCode() {
 
-        return Objects.hash(name, password);
+        return Objects.hash(id, name, password);
     }
 
     @Override
     public String toString() {
         return "User{" +
-                "name='" + name + '\'' +
+                "id=" + id +
+                ", name='" + name + '\'' +
                 ", password='" + password + '\'' +
                 '}';
     }

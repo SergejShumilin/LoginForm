@@ -20,17 +20,21 @@ public class SiteController {
     }
 
 
-    @PostMapping(value = "/result")
+    @PostMapping(value = "/r")//uri
     public String postSubmit(@RequestParam String user, @RequestParam String password, Model model) {
-        if (userValidator.validate(user) && userValidator.validate(password)) {
+        if (userValidator.validate(user) && userValidator.validatePassword(user, password)) {
             model.addAttribute("user", user);
-            return "result";
+            return "result";//html name
         } else {
             return "redirect:/error";
         }
-
     }
 
+    @PostMapping(value = "/registration")
+    public String postRegistration() {
+
+        return "registration";
+    }
     @PostMapping(value = "/error")
     public String postError() {
         return "error";
