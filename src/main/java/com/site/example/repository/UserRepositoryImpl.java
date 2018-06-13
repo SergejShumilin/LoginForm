@@ -7,48 +7,41 @@ import java.sql.*;
 
 @Component
 public class UserRepositoryImpl implements UserRepository {
-
-    private static final String url = "jdbc:mysql://localhost:3306/mydatabase?autoReconnect=true&useSSL=false";
-    private static final String name = "root";
-    private static final String passwordToDataBase = "12345";
-    private static final String insertNew = "INSERT INTO user VALUES(?,?,?)";
+    private static final String URL = "jdbc:mysql://localhost:3306/mydatabase?autoReconnect=true&useSSL=false";
+    private static final String NAME = "root";
+    private static final String PASSWORD_TO_DATA_BASE = "12345";
+    private static final String INSERT_NEW = "INSERT INTO user VALUES(?,?,?)";
+    private static final String SELECT_NEW = "SELECT password FROM user WHERE name = ?";
 
     @Override
-    public void saveUserInDataBase(String userName, String password) {
+    public void save(String name, String password) {
         Connection connection = null;
         PreparedStatement preparedStatement = null;
         Driver driver = null;
         try {
             driver = new FabricMySQLDriver();
             DriverManager.registerDriver(driver);
-            connection = DriverManager.getConnection(url, name, passwordToDataBase);
-            preparedStatement = connection.prepareStatement(insertNew);
-            preparedStatement.setString(2, userName);
+            connection = DriverManager.getConnection(URL, NAME, PASSWORD_TO_DATA_BASE);
+            preparedStatement = connection.prepareStatement(INSERT_NEW);
+            preparedStatement.setString(2, name);
             preparedStatement.setString(3, password);
-            preparedStatement.execute();
+            preparedStatement.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
-        } finally {
-            try {
-                connection.close();
-                preparedStatement.close();
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
         }
     }
 
-    public String getByName(String userName) {
+    @Override
+    public String getByName(String name) {
         Connection connection = null;
         PreparedStatement preparedStatement = null;
         Driver driver = null;
         String password = null;
         try {
-            driver = new FabricMySQLDriver();
             DriverManager.registerDriver(driver);
-            connection = DriverManager.getConnection(url, name, passwordToDataBase);
-            preparedStatement = connection.prepareStatement("SELECT password FROM user WHERE name = ?");
-            preparedStatement.setString(1, userName);
+            connection = DriverManager.getConnection(URL, NAME, PASSWORD_TO_DATA_BASE);
+            preparedStatement = connection.prepareStatement(SELECT_NEW);
+            preparedStatement.setString(1, name);
             ResultSet resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
                 password = resultSet.getString("password");
@@ -62,9 +55,7 @@ public class UserRepositoryImpl implements UserRepository {
             } catch (SQLException e) {
                 e.printStackTrace();
             }
+            return password;
         }
-        return password;
     }
 }
-
-

@@ -1,7 +1,7 @@
 package com.site.example.repository;
 
 public interface UserRepository {
-    void saveUserInDataBase(String userName, String password);
+    void save(String name, String password);
 
-    String getByName(String userName);
+    String getByName(String name);
 }

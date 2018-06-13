@@ -1,5 +1,6 @@
 package com.site.example.service;
 
+
 import com.site.example.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -8,17 +9,17 @@ import org.springframework.stereotype.Component;
 public class UserValidatorImpl implements UserValidator {
 
     @Autowired
-    private UserRepository userRepository;
+    UserRepository userRepository;
 
-
+    @Override
     public boolean validate(String value) {
         int length = value.length();
-        return length > 4 && length < 8;
+        return length > 4 && length < 9;
     }
 
     @Override
-    public boolean validatePassword(String userName, String password) {
-        String passwordFromDB = userRepository.getByName(userName);
+    public boolean validatePassword(String value, String password) {
+        String passwordFromDB = userRepository.getByName(value);
         return password.equals(passwordFromDB);
     }
 }

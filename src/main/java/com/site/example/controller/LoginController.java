@@ -9,36 +9,23 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
-public class SiteController {
+public class LoginController {
 
     @Autowired
     private UserValidator userValidator;
 
-    @GetMapping("/index")
+    @GetMapping("/login")
     public String getForm() {
-        return "index";
+        return "login";
     }
 
-
-    @PostMapping(value = "/r")//uri
+    @PostMapping(value = "/result")
     public String postSubmit(@RequestParam String user, @RequestParam String password, Model model) {
         if (userValidator.validate(user) && userValidator.validatePassword(user, password)) {
             model.addAttribute("user", user);
-            return "result";//html name
+            return "result";
         } else {
             return "redirect:/error";
         }
     }
-
-    @PostMapping(value = "/registration")
-    public String postRegistration() {
-
-        return "registration";
-    }
-    @PostMapping(value = "/error")
-    public String postError() {
-        return "error";
-    }
-
-
 }
