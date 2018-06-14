@@ -10,7 +10,7 @@ public class UserRepositoryImpl implements UserRepository {
     private static final String URL = "jdbc:mysql://localhost:3306/mydatabase?autoReconnect=true&useSSL=false";
     private static final String NAME = "root";
     private static final String PASSWORD_TO_DATA_BASE = "12345";
-    private static final String INSERT = "INSERT INTO user VALUES(?,?)";
+    private static final String INSERT = "INSERT INTO user(name, password) VALUES(?,?)";
     private static final String SELECT = "SELECT password FROM user WHERE name = ?";
 
     @Override
