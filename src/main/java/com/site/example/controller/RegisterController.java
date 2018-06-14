@@ -12,14 +12,14 @@ public class RegisterController {
     @Autowired
     private UserSaveToDataBase userSaveToDataBase;
 
-    @GetMapping("/")
+    @GetMapping("/registr")
     public String getFormRegistration() {
         return "registration";
     }
 
-    @PostMapping(value = "/register")
-    public String postRegistration(@RequestParam String name, @RequestParam String password) {
-        userSaveToDataBase.save(name, password);
+    @PostMapping(value = "/login")
+    public String postRegistration(@RequestParam String user, @RequestParam String password) {
+        userSaveToDataBase.save(user, password);
         return "login";
     }
 }

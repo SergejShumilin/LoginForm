@@ -14,7 +14,7 @@ public class LoginController {
     @Autowired
     private UserValidator userValidator;
 
-    @GetMapping("/login")
+    @GetMapping("/")
     public String getForm() {
         return "login";
     }
