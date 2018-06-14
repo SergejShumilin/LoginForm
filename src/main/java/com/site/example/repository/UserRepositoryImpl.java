@@ -10,8 +10,8 @@ public class UserRepositoryImpl implements UserRepository {
     private static final String URL = "jdbc:mysql://localhost:3306/mydatabase?autoReconnect=true&useSSL=false";
     private static final String NAME = "root";
     private static final String PASSWORD_TO_DATA_BASE = "12345";
-    private static final String INSERT_NEW = "INSERT INTO user VALUES(?,?,?)";
-    private static final String SELECT_NEW = "SELECT password FROM user WHERE name = ?";
+    private static final String INSERT = "INSERT INTO user VALUES(?,?)";
+    private static final String SELECT = "SELECT password FROM user WHERE name = ?";
 
     @Override
     public void save(String name, String password) {
@@ -22,9 +22,9 @@ public class UserRepositoryImpl implements UserRepository {
             driver = new FabricMySQLDriver();
             DriverManager.registerDriver(driver);
             connection = DriverManager.getConnection(URL, NAME, PASSWORD_TO_DATA_BASE);
-            preparedStatement = connection.prepareStatement(INSERT_NEW);
-            preparedStatement.setString(2, name);
-            preparedStatement.setString(3, password);
+            preparedStatement = connection.prepareStatement(INSERT);
+            preparedStatement.setString(1, name);
+            preparedStatement.setString(2, password);
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -32,7 +32,7 @@ public class UserRepositoryImpl implements UserRepository {
     }
 
     @Override
-    public String getByName(String name) {
+    public String getPasswordByName(String name) {
         Connection connection = null;
         PreparedStatement preparedStatement = null;
         Driver driver = null;
@@ -40,7 +40,7 @@ public class UserRepositoryImpl implements UserRepository {
         try {
             DriverManager.registerDriver(driver);
             connection = DriverManager.getConnection(URL, NAME, PASSWORD_TO_DATA_BASE);
-            preparedStatement = connection.prepareStatement(SELECT_NEW);
+            preparedStatement = connection.prepareStatement(SELECT);
             preparedStatement.setString(1, name);
             ResultSet resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {

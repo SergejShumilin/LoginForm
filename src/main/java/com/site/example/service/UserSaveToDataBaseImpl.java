@@ -10,8 +10,8 @@ public class UserSaveToDataBaseImpl implements UserSaveToDataBase {
     UserRepository userRepository;
 
     @Override
-    public boolean saveUser(String value, String password) {
-        return userRepository.save(value, password);
+    public void save(String value, String password) {
+        userRepository.save(value, password);
 
     }
 }

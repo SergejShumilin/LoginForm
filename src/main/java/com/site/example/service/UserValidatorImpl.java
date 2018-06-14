@@ -19,7 +19,7 @@ public class UserValidatorImpl implements UserValidator {
 
     @Override
     public boolean validatePassword(String value, String password) {
-        String passwordFromDB = userRepository.getByName(value);
+        String passwordFromDB = userRepository.getPasswordByName(value);
         return password.equals(passwordFromDB);
     }
 }

@@ -19,10 +19,7 @@ public class RegisterController {
 
     @PostMapping(value = "/register")
     public String postRegistration(@RequestParam String name, @RequestParam String password) {
-        if (userSaveToDataBase.saveUser(name, password)) {
-            return "login";
-        } else {
-            return "redirect:/error";
-        }
+        userSaveToDataBase.save(name, password);
+        return "login";
     }
 }

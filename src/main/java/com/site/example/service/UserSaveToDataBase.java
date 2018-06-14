@@ -1,5 +1,5 @@
 package com.site.example.service;
 
 public interface UserSaveToDataBase {
-    boolean saveUser(String value, String password);
+    void save(String value, String password);
 }
