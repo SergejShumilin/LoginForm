@@ -28,7 +28,16 @@ public class UserRepositoryImpl implements UserRepository {
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
+        } finally {
+            try {
+                connection.close();
+                preparedStatement.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+
         }
+
     }
 
     @Override
