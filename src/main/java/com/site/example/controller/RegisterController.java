@@ -12,7 +12,7 @@ public class RegisterController {
     @Autowired
     private UserSaveToDataBase userSaveToDataBase;
 
-    @GetMapping("/registr")
+    @GetMapping("/register")
     public String getFormRegistration() {
         return "registration";
     }

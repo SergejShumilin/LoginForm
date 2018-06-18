@@ -47,6 +47,7 @@ public class UserRepositoryImpl implements UserRepository {
         Driver driver = null;
         String password = null;
         try {
+            driver = new FabricMySQLDriver();
             DriverManager.registerDriver(driver);
             connection = DriverManager.getConnection(URL, NAME, PASSWORD_TO_DATA_BASE);
             preparedStatement = connection.prepareStatement(SELECT);
