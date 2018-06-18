@@ -2,6 +2,7 @@ package com.site.example.service;
 
 
 import com.site.example.repository.UserRepository;
+import com.site.example.util.MD5;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -9,7 +10,7 @@ import org.springframework.stereotype.Component;
 public class UserValidatorImpl implements UserValidator {
 
     @Autowired
-    UserRepository userRepository;
+    private UserRepository userRepository;
 
 
     @Override
@@ -20,7 +21,8 @@ public class UserValidatorImpl implements UserValidator {
 
     @Override
     public boolean validatePassword(String value, String password) {
+        String HashPassword = MD5.getHash(password);
         String passwordFromDB = userRepository.getPasswordByName(value);
-        return password.equals(passwordFromDB);
+        return HashPassword.equals(passwordFromDB);
     }
 }
