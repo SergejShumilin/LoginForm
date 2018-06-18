@@ -1,8 +1,10 @@
 package com.site.example.util;
 
+
 import java.io.UnsupportedEncodingException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+
 
 public class HashMD5 {
     public static String getHash(String password) {

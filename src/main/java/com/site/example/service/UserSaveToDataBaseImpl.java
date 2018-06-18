@@ -10,12 +10,11 @@ public class UserSaveToDataBaseImpl implements UserSaveToDataBase {
     @Autowired
     UserRepository userRepository;
 
-    HashMD5 md5;
-
     @Override
     public void save(String value, String password) {
-        String hash = md5.getHash(password);
+        String hash = HashMD5.getHash(password);
         userRepository.save(value, hash);
     }
+
 
 }

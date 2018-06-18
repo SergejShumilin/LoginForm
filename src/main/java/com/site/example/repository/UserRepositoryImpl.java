@@ -35,9 +35,7 @@ public class UserRepositoryImpl implements UserRepository {
             } catch (SQLException e) {
                 e.printStackTrace();
             }
-
         }
-
     }
 
     @Override
