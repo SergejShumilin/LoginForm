@@ -1,5 +1,6 @@
 package com.site.example.service;
 
+import com.site.example.entity.User;
 import com.site.example.repository.UserRepository;
 import com.site.example.util.MD5;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,9 +12,9 @@ public class UserSaveToDataBaseImpl implements UserSaveToDataBase {
     private UserRepository userRepository;
 
     @Override
-    public void save(String value, String password) {
-        String hash = MD5.getHash(password);
-        userRepository.save(value, hash);
+    public void save(User user) {
+        String hash = MD5.getHash(user.getPassword());
+        userRepository.save(user.getName(), hash);
     }
 
 

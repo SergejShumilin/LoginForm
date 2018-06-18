@@ -1,11 +1,12 @@
 package com.site.example.controller;
 
+import com.site.example.entity.User;
 import com.site.example.service.UserSaveToDataBase;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RequestBody;
 
 @Controller
 public class RegisterController {
@@ -18,8 +19,8 @@ public class RegisterController {
     }
 
     @PostMapping(value = "/login")
-    public String postRegistration(@RequestParam String user, @RequestParam String password) {
-        userSaveToDataBase.save(user, password);
+    public String postRegistration(@RequestBody User user) {
+        userSaveToDataBase.save(user);
         return "login";
     }
 }

@@ -1,7 +1,7 @@
 package com.site.example.service;
 
+import com.site.example.entity.User;
+
 public interface UserSaveToDataBase {
-    void save(String value, String password);
-
-
+    void save(User user);
 }
