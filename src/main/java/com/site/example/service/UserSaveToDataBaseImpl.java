@@ -14,7 +14,7 @@ public class UserSaveToDataBaseImpl implements UserSaveToDataBase {
     @Override
     public void save(User user) {
         String hash = MD5.getHash(user.getPassword());
-        userRepository.save(user.getName(), hash);
+        userRepository.save(user.getUser(), hash);
     }
 
 

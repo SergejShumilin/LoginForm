@@ -4,12 +4,17 @@ import java.util.Objects;
 
 public class User {
     private long id;
-    private String name;
+    private String user;
     private String password;
 
-    public User(long id, String name, String password) {
+    public User(String user, String password) {
+        this.user = user;
+        this.password = password;
+    }
+
+    public User(long id, String user, String password) {
         this.id = id;
-        this.name = name;
+        this.user = user;
         this.password = password;
     }
 
@@ -21,12 +26,12 @@ public class User {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getUser() {
+        return user;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setUser(String user) {
+        this.user = user;
     }
 
     public String getPassword() {
@@ -41,23 +46,22 @@ public class User {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        User user = (User) o;
-        return id == user.id &&
-                Objects.equals(name, user.name) &&
-                Objects.equals(password, user.password);
+        User user1 = (User) o;
+        return id == user1.id &&
+                Objects.equals(user, user1.user) &&
+                Objects.equals(password, user1.password);
     }
 
     @Override
     public int hashCode() {
-
-        return Objects.hash(id, name, password);
+        return Objects.hash(id, user, password);
     }
 
     @Override
     public String toString() {
         return "User{" +
                 "id=" + id +
-                ", name='" + name + '\'' +
+                ", user='" + user + '\'' +
                 ", password='" + password + '\'' +
                 '}';
     }

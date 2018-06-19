@@ -21,8 +21,8 @@ public class UserValidatorImpl implements UserValidator {
 
     @Override
     public boolean validatePassword(String value, String password) {
-        String HashPassword = MD5.getHash(password);
+        String hashPassword = MD5.getHash(password);
         String passwordFromDB = userRepository.getPasswordByName(value);
-        return HashPassword.equals(passwordFromDB);
+        return hashPassword.equals(passwordFromDB);
     }
 }
