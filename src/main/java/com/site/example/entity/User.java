@@ -7,11 +7,6 @@ public class User {
     private String user;
     private String password;
 
-    public User(String user, String password) {
-        this.user = user;
-        this.password = password;
-    }
-
     public User(long id, String user, String password) {
         this.id = id;
         this.user = user;
